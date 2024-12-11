@@ -98,7 +98,7 @@ body {
 
 .text-section {
   max-width: 500px;
-  text-align: center;
+  text-align: left;
 }
 
 .text-section h2 {
@@ -212,7 +212,7 @@ body {
   }
 
   .logo-grid {
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 30px; /* Increase the gap between icons */
   }
 
   .social-logo {
@@ -235,11 +235,149 @@ body {
       padding: 8px 16px;
   }
 
-  .contact-item p {
-      font-size: 14px;
+  .logo-item {
+    width: 100%; /* Make the logo item fill the available width */
+    height: auto; /* Maintain aspect ratio */
+    text-align: center;
+  }
+  
+  .logo-item img {
+    max-width: 100%; /* Make the image fill the width of the logo item */
+    height: auto;
+    margin: 0; /* Remove default margin */
   }
 
   .logo-item img {
-      max-width: 70px;
+    max-width: 150px; /* Increase the maximum width */
+    height: auto;
+    margin: auto;
   }
+}
+
+/* Card css */
+/* Project Section - Cards */
+.project-section {
+  padding: 50px 20px;
+  background: #FFFFFF;
+  text-align:left;
+}
+
+.project-section h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background: #F9F9F9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: left;
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.card-content p {
+  margin: 10px 0 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.card-toggle {
+  display: block;
+  width: 100%;
+  background: #FF585D;
+  color: #FFF;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border-top: 1px solid #EEE;
+}
+
+.card-dropdown {
+  display: none;
+  background: #FFF;
+  padding: 10px 15px;
+  border-top: 1px solid #EEE;
+}
+
+.card-dropdown a {
+  display: block;
+  color: #FF585D;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card-dropdown a:hover {
+  text-decoration: underline;
+}
+
+.card.active .card-dropdown {
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.card-links {  /* Styles for the new links container */
+  display: flex;
+  justify-content: space-between; /* Evenly distribute buttons */
+  margin: 5px 0; /* Add some space above and below */
+}
+
+.social-button {
+  background-color: #333; /* Dark background for buttons */
+  color: #fff; /* Light text color */
+  padding: 5px 10px; /* Padding for text */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Indicate clickable action */
+  transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.social-button:hover {
+  background-color: #222; /* Darken background on hover */
+}
+
+.github { /* Optional: Customize GitHub button color */
+  background-color: #4183C6; /* GitHub blue */
+}
+
+.youtube { /* Optional: Customize YouTube button color */
+  background-color: #C4302B; /* YouTube red */
 }
