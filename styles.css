@@ -381,3 +381,17 @@ body {
 .youtube { /* Optional: Customize YouTube button color */
   background-color: #C4302B; /* YouTube red */
 }
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns */
+  gap: 20px; /* space between the items */
+  justify-items: center; /* center the items horizontally */
+  align-items: center; /* center the items vertically */
+  padding: 20px;
+}
+
+.logo-item img {
+  max-width: 100%;
+  max-height: 100px; /* You can adjust the height of the images */
+  object-fit: contain; /* Ensure images maintain their aspect ratio */
+}
