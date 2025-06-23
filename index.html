@@ -49,15 +49,26 @@
 </head>
 <body>
   <header>
-    <div class="name">Your Name</div>
-    <button id="theme-toggle">Dark Mode</button>
+    <div class="name">Patel Nayan</div>
+    <button id="theme-toggle">Toggle Theme</button>
   </header>
   <div class="container">
-    <p>Hello, I’m <strong>Your Name</strong>. I’m a software developer specializing in front-end technologies and interested in building responsive, user-friendly web applications. For more about my work, visit my <a href="https://github.com/yourusername">GitHub</a>.</p>
+    <p>Hello, I’m <strong>Patel Nayan</strong>. I’m a student specializing in Artificial Intelligence & Data Science and interested in building solutions. For more about my work, visit my <a href="https://github.com/Nayanpatel48" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
   </div>
+
   <script>
     const btn = document.getElementById('theme-toggle');
     const root = document.documentElement;
+
+    // Detect system preference on load
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      root.setAttribute('data-theme', 'dark');
+      btn.textContent = 'Light Mode';
+    } else {
+      btn.textContent = 'Dark Mode';
+    }
+
+    // Toggle button action
     btn.addEventListener('click', () => {
       if (root.getAttribute('data-theme') === 'dark') {
         root.removeAttribute('data-theme');
