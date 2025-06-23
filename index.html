@@ -1,139 +1,72 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+    }
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 600px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+    button {
+      background: none;
+      border: 1px solid var(--text-color);
+      border-radius: 4px;
+      padding: 0.5rem;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <!-- Home Section -->
-  <section class="home-section">
-    <div class="container">
-      <div class="text-content">
-        <h1>Hello, I am <span class="name">Patel Nayan</span></h1>
-        <hr />
-        <p class="subtitle">Student of Artificial Intelligence & Data Science +<br> Software Developer </p>
-        <a href="#portfolio" class="portfolio-link">View My Portfolio</a>
-      </div>
-      <div class="image-container">
-        <img src="empty1.jpg" alt="Profile image" />
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="about-section">
-    <div class="about-container">
-      <div class="images-section">
-        <img src="inspire.jpg" alt="Chad working on a laptop" class="rounded-image">
-        <img src="problemsolving.jpg" alt="Two people shaking hands" class="rounded-image">
-      </div>
-      <div class="text-section">
-        <h2>Who I Am and What I Do</h2>
-        <p>My name is Patel Nayan.</p>
-        <p>I'm a Science student. Currently studying Artificial Intelligence and Data Science. I build solutions of the problems which people faces in their daily life. </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section class="skills-section" style="text-align: left">
-    <h2>Programming Skills:</h2>
-    <div class="logo-grid">
-        <div class="logo-item"><img src="images/java.png" alt="Java"></div>
-        <div class="logo-item"><img src="images/js.png" alt="JavaScript"></div>
-        <div class="logo-item"><img src="images/python.jpeg" alt="Python"></div>
-    </div>
-
-    <h2>Tools:</h2>
-    <div class="logo-grid">
-        <div class="logo-item"><img src="images/vscode.jpeg" alt="VS Code"></div>
-        <div class="logo-item"><img src="images/pycharm.png" alt="PyCharm"></div>
-        <div class="logo-item"><img src="images/intelli.png" alt="IntelliJ IDEA"></div>
-        <div class="logo-item"><img src="images/jupiter.png" alt="Jupyter Notebook"></div>
-        <div class="logo-item"><img src="images/colab.png" alt="Google Colab"></div>
-        <div class="logo-item"><img src="images/anaconda.png" alt="Anaconda"></div>
-    </div>
-
-    <h2>Libraries & Frameworks:</h2>
-    <div class="logo-grid">
-      <div class="logo-item"><img src="images/folium.png" alt="folium"></div>
-      <div class="logo-item"><img src="images/scipy.png" alt="Scipy"></div>
-      <div class="logo-item"><img src="images/numpy.png" alt="NumPy"></div>
-      <div class="logo-item"><img src="images/matplotlib.jpeg" alt="Matplotlib"></div>
-      <div class="logo-item"><img src="images/Pandas_logo.svg.png" alt="Pandas"></div>
-      <div class="logo-item"><img src="images/scikitlearn.png" alt="Scikit-learn"></div>
-      <div class="logo-item"><img src="images/power-bi-vector-logo-2022.png" alt="power bi"></div>
-      <div class="logo-item"><img src="images/seaborn.png" alt="seaborn"></div>
+  <header>
+    <div class="name">Your Name</div>
+    <button id="theme-toggle">Dark Mode</button>
+  </header>
+  <div class="container">
+    <p>Hello, I’m <strong>Your Name</strong>. I’m a software developer specializing in front-end technologies and interested in building responsive, user-friendly web applications. For more about my work, visit my <a href="https://github.com/yourusername">GitHub</a>.</p>
   </div>
-
-    <h2>OS i use on daily basis:</h2>
-    <div class="logo-grid">
-        <div class="logo-item"><img src="images/ubuntu.png" alt="Ubuntu"></div>
-    </div>
-  </section>
-
-  <!-- Project Section -->
-  <section class="project-section">
-    <h2>My Projects:</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="" alt="Project 1 Image" class="card-image">
-        <div class="card-content">
-          <h3>Project Title 1</h3>
-          <p>Tech Stack: React, Firebase, Tailwind CSS</p>
-          <div class="card-links">
-            <a href="https://github.com" target="_blank" class="social-button github">GitHub</a>
-            <a href="https://youtube.com" target="_blank" class="social-button youtube">YouTube</a>
-          </div>
-        </div>
-      </div>
-  
-      <div class="card">
-        <img src="" alt="Project 2 Image" class="card-image">
-        <div class="card-content">
-          <h3>Project Title 2</h3>
-          <p>Tech Stack: Python, Django, PostgreSQL</p>
-          <div class="card-links">
-            <a href="https://github.com" target="_blank" class="social-button github">GitHub</a>
-            <a href="https://youtube.com" target="_blank" class="social-button youtube">YouTube</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Get in Touch Section -->
-  <section class="get-in-touch">
-    <h2>Get in Touch</h2>
-    <div class="contact-info">
-        <div class="contact-item">
-            <p>Email</p>
-            <p>www.patelnayan187@gmail.com</p>
-        </div>
-        <div class="contact-item">
-            <p>Phone</p>
-            <p>+91 7802841504</p>
-            <p>+91 9723879777</p>
-        </div>
-    </div>
-    <div class="social-icons">
-        <a href="https://www.linkedin.com/in/patel-nayan-047317248/" target="_blank">
-            <img src="linked.png" alt="LinkedIn" class="social-logo">
-        </a>
-        <a href="https://x.com/PatelNa53136705" target="_blank">
-            <img src="twitter.jpeg" alt="Twitter" class="social-logo">
-        </a>
-        <a href="https://hashnode.com/@nayan623" target="_blank">
-            <img src="hashnode.jpeg" alt="Hashnode" class="social-logo">
-        </a>
-        <a href="https://medium.com/@www.patelnayan187" target="_blank">
-            <img src="medium.jpeg" alt="Medium" class="social-logo">
-        </a>
-        <a href="https://github.com/Nayanpatel48" target="_blank">
-            <img src="github.jpeg" alt="GitHub" class="social-logo">
-        </a>
-    </div>
-  </section>    
+  <script>
+    const btn = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    btn.addEventListener('click', () => {
+      if (root.getAttribute('data-theme') === 'dark') {
+        root.removeAttribute('data-theme');
+        btn.textContent = 'Dark Mode';
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        btn.textContent = 'Light Mode';
+      }
+    });
+  </script>
 </body>
 </html>
