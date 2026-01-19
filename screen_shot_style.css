@@ -1,0 +1,178 @@
+/* Basic Reset to make sizing easier */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+/* --- Main Viewer Container --- */
+.viewer-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    border: 2px solid #333; /* Matching mockup border */
+    width: 100%;
+    max-width: 800px; /* Desktop constraint */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* --- Top Preview Area --- */
+.preview-area {
+    position: relative;
+    width: 100%;
+    /* Establish an aspect ratio for the preview container. 
+       Padding-top percentage is based on width (e.g., 60% = 5:3 ratio) */
+    padding-top: 60%; 
+    background-color: #eee;
+    border-radius: 12px;
+    border: 2px solid #333; /* Matching mockup inner border */
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* The actual image inside the preview area */
+#main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the space nicely */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* --- Buttons & Controls --- */
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Navigation Arrows (Prev/Next) */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 15px;
+    font-size: 24px;
+    border-radius: 4px;
+    z-index: 2; /* Ensure above image */
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* Full Screen Button */
+.fullscreen-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px;
+    border-radius: 8px; /* Squarish rounded corners per mockup */
+    border: 2px solid #333;
+    background: white;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.fullscreen-btn:hover {
+    background: #eee;
+}
+
+/* --- Bottom Thumbnail Strip --- */
+.thumbnail-strip {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Allows scrolling on mobile if many images */
+    padding-bottom: 5px; /* Space for scrollbar */
+    /* Hide scrollbar for cleaner look in some browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+.thumbnail-strip::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+    flex-shrink: 0; /* Prevents squishing on small screens */
+}
+
+.thumbnail:hover {
+    opacity: 1;
+}
+
+/* Style for the currently selected thumbnail */
+.thumbnail.active {
+    opacity: 1;
+    border-color: #333;
+    transform: scale(1.05);
+}
+
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 600px) {
+    .viewer-container {
+        padding: 15px;
+    }
+    
+    /* Make preview area slightly taller on mobile */
+    .preview-area {
+        padding-top: 75%; /* 4:3 aspect ratio */
+    }
+
+    .nav-btn {
+        padding: 5px 10px;
+        font-size: 18px;
+    }
+
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+    }
+}
+
+/* --- Full Screen Mode Specific Styles --- */
+/* When the preview-area is in full screen mode */
+.preview-area:fullscreen {
+    padding-top: 0; /* Remove aspect ratio padding */
+    height: 100vh; /* Force full height */
+    width: 100vw;
+    background: black;
+    border: none;
+    border-radius: 0;
+}
+
+.preview-area:fullscreen #main-image {
+    object-fit: contain; /* Ensure whole image is visible in FS mode */
+}
