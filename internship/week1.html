@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Basics of Python Programming</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        header {
+            background: #3776ab;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        nav {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            position: sticky;
+            top: 10px;
+        }
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #3776ab;
+            font-weight: bold;
+        }
+        section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #3776ab;
+            border-bottom: 2px solid #ffd343;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #2b5b84;
+            margin-top: 25px;
+        }
+        code {
+            background: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .code-block {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            display: block;
+            white-space: pre;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .output-block {
+            background: #e8e8e8;
+            border-left: 5px solid #4caf50;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3776ab;
+            color: white;
+        }
+        .assignment-list {
+            list-style: none;
+            padding: 0;
+        }
+        .assignment-list li {
+            background: #ffd343;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Python Programming: Chapter 1</h1>
+    <p>Foundations, Control Statements, and Core Concepts</p>
+</header>
+
+<nav>
+    <strong>Quick Links:</strong> 
+    <a href="#control-statements">Control Statements</a> | 
+    <a href="#core-python">Core Python</a> | 
+    <a href="#functions">Functions</a> | 
+    <a href="#assignments">Assignments</a>
+</nav>
+
+<section id="control-statements">
+    <h2>1.1 Python Control Statements</h2>
+    
+    <h3>Indentation in Python</h3>
+    <p>In Python, indentation is used to declare a block. If two statements are at the same indentation level, then they are the part of the same block.</p>
+    
+    
+
+    <h3>Conditional Statements</h3>
+    <p>Conditional Statements perform different computations or actions depending on conditions.</p>
+    <ul>
+        <li><strong>if statement:</strong> Executes a block if the condition is true.</li>
+        <li><strong>if-else:</strong> Provides an <code>else</code> block for the false case.</li>
+        <li><strong>if-elif-else:</strong> Checks multiple conditions in sequence.</li>
+    </ul>
+
+    <div class="code-block">
+if age >= 18:
+    print("You are an adult.")
+elif age > 12:
+    print("You are a teenager.")
+else:
+    print("You are a child.")
+    </div>
+
+    <h3>Loop Statements</h3>
+    <p>Used to repeat code execution multiple times.</p>
+    <ul>
+        <li><strong>while loop:</strong> Repeats as long as a condition is true. Best when iterations are unknown.</li>
+        <li><strong>for loop:</strong> Used to iterate over a sequence (list, tuple, string) or a fixed number of times.</li>
+    </ul>
+
+    <h3>Jump Statements</h3>
+    <p>Used to alter the flow of a loop:</p>
+    <ul>
+        <li><strong>break:</strong> Terminates the loop and brings control out.</li>
+        <li><strong>continue:</strong> Skips the current iteration and returns to the beginning of the loop.</li>
+    </ul>
+</section>
+
+<section id="core-python">
+    <h2>1.2 Core Python</h2>
+    
+    <h3>Variables & Scope</h3>
+    <p>Variables are containers for storing information.</p>
+    <ul>
+        <li><strong>Local Variable:</strong> Created inside a function; accessible only there.</li>
+        <li><strong>Global Variable:</strong> Created in the main body; accessible anywhere.</li>
+    </ul>
+
+    <h3>Data Types</h3>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Types</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Numeric</td>
+            <td>int, float, complex</td>
+            <td>Whole numbers, decimals, and imaginary numbers.</td>
+        </tr>
+        <tr>
+            <td>Sequence</td>
+            <td>list, tuple, range</td>
+            <td>Ordered collections. Lists are mutable; Tuples are immutable.</td>
+        </tr>
+        <tr>
+            <td>Text</td>
+            <td>str</td>
+            <td>Unicode characters in quotes.</td>
+        </tr>
+        <tr>
+            <td>Mapping</td>
+            <td>dict</td>
+            <td>Key-value pairs (unordered).</td>
+        </tr>
+        <tr>
+            <td>Set</td>
+            <td>set</td>
+            <td>Unordered collection of unique items.</td>
+        </tr>
+    </table>
+
+    
+
+    <h3>Python Operators</h3>
+    <ul>
+        <li><strong>Arithmetic:</strong> +, -, *, /, %, **, //</li>
+        <li><strong>Comparison:</strong> ==, !=, &gt;, &lt;, &gt;=, &lt;=</li>
+        <li><strong>Logical:</strong> and, or, not</li>
+        <li><strong>Identity:</strong> is, is not (Checks memory location)</li>
+    </ul>
+</section>
+
+<section id="functions">
+    <h2>1.2.2 Core Python Part 2: Functions</h2>
+    <p>A function is a block of code that performs a specific task. Python has <strong>built-in</strong> and <strong>user-defined</strong> functions.</p>
+    
+    <h3>Function Arguments</h3>
+    <ol>
+        <li><strong>Default Arguments:</strong> Uses a pre-assigned value if none is provided.</li>
+        <li><strong>Keyword Arguments:</strong> Passed as <code>key = value</code>; order doesn't matter.</li>
+        <li><strong>Required Arguments:</strong> Must be passed in the correct positional order.</li>
+        <li><strong>Variable-length Arguments:</strong> Used to pass more arguments than defined.</li>
+    </ol>
+
+    <div class="code-block">
+def greet(name, msg="Good morning!"):
+    print("Hello", name, msg)
+
+greet("Alex") # Uses default
+greet("Sam", "How are you?") # Overrides default
+    </div>
+</section>
+
+<section id="assignments">
+    <h2>1.3 Practical Assignments</h2>
+    <p>Complete the following tasks to master the basics:</p>
+    <ul class="assignment-list">
+        <li>Install Python & IDE Setup</li>
+        <img src="./week1_imgs/IDEA_setup.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
+        <img src="./week1_imgs/python_version.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
+
+        <li>First Python Program - “Hello World”</li>
+        <img src="./week1_imgs/hello_word.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
+
+        <li>Practice Basic Print Statements</li>
+        <img src="./week1_imgs/print_statements.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
+
+        <li>Variables & Data Types Program</li>
+        <img src="./week1_imgs/variables_datatypes.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
+
+        <li>User Input & Arithmetic Program</li>
+        <img src="./week1_imgs/user_input.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
+
+        <li>Mini Project – Intro Profile Program</li>
+        <img src="./week1_imgs/mini_project.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
+    </ul>
+</section>
+
+<footer>
+    <p style="text-align: center; color: #777; font-size: 0.8em;">&copy; 2026 Python Programming Basics Tutorial</p>
+</footer>
+
+</body>
+</html>
