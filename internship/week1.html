@@ -1,270 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 1: Basics of Python Programming</title>
+    <title>Week 1 - Programming Fundamentals</title>
+    <link rel="stylesheet" href="../style.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+        .week-container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f7f6;
-        }
-        header {
-            background: #3776ab;
-            color: white;
             padding: 2rem;
+        }
+
+        .week-header {
             text-align: center;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
         }
-        nav {
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            position: sticky;
-            top: 10px;
+
+        .week-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
         }
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #3776ab;
+
+        .week-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .objective {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 3rem;
+        }
+
+        .objective h2 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .objective p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            background: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
+            flex-shrink: 0;
         }
-        section {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
+
+        .day-title {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .task-definition {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 0.5rem;
+        }
+
+        .code-snippet {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #3776ab;
-            border-bottom: 2px solid #ffd343;
-            padding-bottom: 10px;
-        }
-        h3 {
-            color: #2b5b84;
-            margin-top: 25px;
-        }
-        code {
-            background: #f1f1f1;
-            padding: 2px 5px;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        .code-block {
-            background: #272822;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
             overflow-x: auto;
-            display: block;
-            white-space: pre;
-            margin: 10px 0;
-            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
         }
-        .output-block {
-            background: #e8e8e8;
-            border-left: 5px solid #4caf50;
-            padding: 10px;
-            margin: 10px 0;
+
+        .code-snippet pre {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .code-snippet .keyword {
+            color: #2563eb;
+        }
+
+        .code-snippet .string {
+            color: #059669;
+        }
+
+        .code-snippet .comment {
+            color: #6b7280;
             font-style: italic;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
         }
-        table, th, td {
-            border: 1px solid #ddd;
+
+        .back-link:hover {
+            opacity: 0.7;
         }
-        th, td {
-            padding: 12px;
-            text-align: left;
+
+        .visual-box {
+            background: var(--bg-color);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
         }
-        th {
-            background-color: #3776ab;
-            color: white;
+
+        .visual-box h4 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
         }
-        .assignment-list {
-            list-style: none;
-            padding: 0;
-        }
-        .assignment-list li {
-            background: #ffd343;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 4px;
-            font-weight: bold;
+
+        .visual-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
     </style>
 </head>
+
 <body>
+    <div class="week-container">
+        <a href="../final_year_internship.html" class="back-link">← Back to Internship Weeks</a>
 
-<header>
-    <h1>Python Programming: Chapter 1</h1>
-    <p>Foundations, Control Statements, and Core Concepts</p>
-</header>
+        <div class="week-header">
+            <h1>Week 1</h1>
+            <p class="subtitle">Programming & Data-Handling Fundamentals</p>
+        </div>
 
-<nav>
-    <strong>Quick Links:</strong> 
-    <a href="#control-statements">Control Statements</a> | 
-    <a href="#core-python">Core Python</a> | 
-    <a href="#functions">Functions</a> | 
-    <a href="#assignments">Assignments</a>
-</nav>
+        <div class="objective">
+            <h2>Objective</h2>
+            <p>Build strong programming and data-handling fundamentals.</p>
+        </div>
 
-<section id="control-statements">
-    <h2>1.1 Python Control Statements</h2>
-    
-    <h3>Indentation in Python</h3>
-    <p>In Python, indentation is used to declare a block. If two statements are at the same indentation level, then they are the part of the same block.</p>
-    
-    
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">1</div>
+                <h3 class="day-title">Internship Induction & AI Overview</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Understood internship objectives, evaluation criteria, and tools.
+                Studied basics of Artificial Intelligence, Machine Learning, and Deep Learning, including real-world
+                applications.
+            </div>
+            <div class="visual-box">
+                <h4>AI Learning Path</h4>
+                <p>AI → Machine Learning → Deep Learning</p>
+            </div>
+        </div>
 
-    <h3>Conditional Statements</h3>
-    <p>Conditional Statements perform different computations or actions depending on conditions.</p>
-    <ul>
-        <li><strong>if statement:</strong> Executes a block if the condition is true.</li>
-        <li><strong>if-else:</strong> Provides an <code>else</code> block for the false case.</li>
-        <li><strong>if-elif-else:</strong> Checks multiple conditions in sequence.</li>
-    </ul>
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">2</div>
+                <h3 class="day-title">Python Basics</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Practiced Python syntax, variables, data types, conditional
+                statements, and loops. Wrote basic programs for arithmetic operations and decision-making.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="comment"># Variables and Data Types</span>
+<span class="keyword">name</span> = <span class="string">"Python"</span>  <span class="comment"># String</span>
+<span class="keyword">age</span> = 25  <span class="comment"># Integer</span>
+<span class="keyword">height</span> = 5.9  <span class="comment"># Float</span>
+<span class="keyword">is_student</span> = <span class="keyword">True</span>  <span class="comment"># Boolean</span>
 
-    <div class="code-block">
-if age >= 18:
-    print("You are an adult.")
-elif age > 12:
-    print("You are a teenager.")
-else:
-    print("You are a child.")
+<span class="comment"># Conditional Statements</span>
+<span class="keyword">if</span> age >= 18:
+    <span class="keyword">print</span>(<span class="string">"Adult"</span>)
+<span class="keyword">else</span>:
+    <span class="keyword">print</span>(<span class="string">"Minor"</span>)
+
+<span class="comment"># Loops</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">range</span>(5):
+    <span class="keyword">print</span>(i)</pre>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">3</div>
+                <h3 class="day-title">Functions & Modules</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Implemented user-defined functions, lambda functions, and explored
+                built-in Python modules such as math and random.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="comment"># User-defined Function</span>
+<span class="keyword">def</span> calculate_area(radius):
+    <span class="keyword">return</span> 3.14159 * radius ** 2
+
+<span class="comment"># Lambda Function</span>
+square = <span class="keyword">lambda</span> x: x ** 2
+
+<span class="comment"># Using Built-in Modules</span>
+<span class="keyword">import</span> math
+<span class="keyword">import</span> random
+
+result = math.sqrt(16)
+random_num = random.randint(1, 100)</pre>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">4</div>
+                <h3 class="day-title">Data Structures</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Worked with lists, tuples, sets, and dictionaries. Performed
+                operations like indexing, slicing, and iteration.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="comment"># Lists (Mutable)</span>
+fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+fruits[0] = <span class="string">"orange"</span>  <span class="comment"># Can modify</span>
+
+<span class="comment"># Tuples (Immutable)</span>
+coordinates = (10, 20)
+
+<span class="comment"># Sets (Unique elements)</span>
+unique_numbers = {1, 2, 3, 3, 4}  <span class="comment"># {1, 2, 3, 4}</span>
+
+<span class="comment"># Dictionaries (Key-Value pairs)</span>
+student = {
+    <span class="string">"name"</span>: <span class="string">"John"</span>,
+    <span class="string">"age"</span>: 20,
+    <span class="string">"grade"</span>: <span class="string">"A"</span>
+}</pre>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">5</div>
+                <h3 class="day-title">NumPy Basics</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Learned NumPy arrays, array operations, reshaping, and mathematical
+                computations for numerical data.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="comment"># Creating Arrays</span>
+arr = np.array([1, 2, 3, 4, 5])
+matrix = np.array([[1, 2], [3, 4]])
+
+<span class="comment"># Array Operations</span>
+result = arr * 2  <span class="comment"># [2, 4, 6, 8, 10]</span>
+sum_arr = np.sum(arr)
+
+<span class="comment"># Reshaping</span>
+reshaped = arr.reshape(5, 1)
+
+<span class="comment"># Mathematical Operations</span>
+mean_val = np.mean(arr)
+std_val = np.std(arr)</pre>
+            </div>
+        </div>
     </div>
-
-    <h3>Loop Statements</h3>
-    <p>Used to repeat code execution multiple times.</p>
-    <ul>
-        <li><strong>while loop:</strong> Repeats as long as a condition is true. Best when iterations are unknown.</li>
-        <li><strong>for loop:</strong> Used to iterate over a sequence (list, tuple, string) or a fixed number of times.</li>
-    </ul>
-
-    <h3>Jump Statements</h3>
-    <p>Used to alter the flow of a loop:</p>
-    <ul>
-        <li><strong>break:</strong> Terminates the loop and brings control out.</li>
-        <li><strong>continue:</strong> Skips the current iteration and returns to the beginning of the loop.</li>
-    </ul>
-</section>
-
-<section id="core-python">
-    <h2>1.2 Core Python</h2>
-    
-    <h3>Variables & Scope</h3>
-    <p>Variables are containers for storing information.</p>
-    <ul>
-        <li><strong>Local Variable:</strong> Created inside a function; accessible only there.</li>
-        <li><strong>Global Variable:</strong> Created in the main body; accessible anywhere.</li>
-    </ul>
-
-    <h3>Data Types</h3>
-    <table>
-        <tr>
-            <th>Category</th>
-            <th>Types</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>Numeric</td>
-            <td>int, float, complex</td>
-            <td>Whole numbers, decimals, and imaginary numbers.</td>
-        </tr>
-        <tr>
-            <td>Sequence</td>
-            <td>list, tuple, range</td>
-            <td>Ordered collections. Lists are mutable; Tuples are immutable.</td>
-        </tr>
-        <tr>
-            <td>Text</td>
-            <td>str</td>
-            <td>Unicode characters in quotes.</td>
-        </tr>
-        <tr>
-            <td>Mapping</td>
-            <td>dict</td>
-            <td>Key-value pairs (unordered).</td>
-        </tr>
-        <tr>
-            <td>Set</td>
-            <td>set</td>
-            <td>Unordered collection of unique items.</td>
-        </tr>
-    </table>
-
-    
-
-    <h3>Python Operators</h3>
-    <ul>
-        <li><strong>Arithmetic:</strong> +, -, *, /, %, **, //</li>
-        <li><strong>Comparison:</strong> ==, !=, &gt;, &lt;, &gt;=, &lt;=</li>
-        <li><strong>Logical:</strong> and, or, not</li>
-        <li><strong>Identity:</strong> is, is not (Checks memory location)</li>
-    </ul>
-</section>
-
-<section id="functions">
-    <h2>1.2.2 Core Python Part 2: Functions</h2>
-    <p>A function is a block of code that performs a specific task. Python has <strong>built-in</strong> and <strong>user-defined</strong> functions.</p>
-    
-    <h3>Function Arguments</h3>
-    <ol>
-        <li><strong>Default Arguments:</strong> Uses a pre-assigned value if none is provided.</li>
-        <li><strong>Keyword Arguments:</strong> Passed as <code>key = value</code>; order doesn't matter.</li>
-        <li><strong>Required Arguments:</strong> Must be passed in the correct positional order.</li>
-        <li><strong>Variable-length Arguments:</strong> Used to pass more arguments than defined.</li>
-    </ol>
-
-    <div class="code-block">
-def greet(name, msg="Good morning!"):
-    print("Hello", name, msg)
-
-greet("Alex") # Uses default
-greet("Sam", "How are you?") # Overrides default
-    </div>
-</section>
-
-<section id="assignments">
-    <h2>1.3 Practical Assignments</h2>
-    <p>Complete the following tasks to master the basics:</p>
-    <ul class="assignment-list">
-        <li>Install Python & IDE Setup</li>
-        <img src="./week1_imgs/IDEA_setup.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
-        <img src="./week1_imgs/python_version.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
-
-        <li>First Python Program - “Hello World”</li>
-        <img src="./week1_imgs/hello_word.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
-
-        <li>Practice Basic Print Statements</li>
-        <img src="./week1_imgs/print_statements.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
-
-        <li>Variables & Data Types Program</li>
-        <img src="./week1_imgs/variables_datatypes.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
-
-        <li>User Input & Arithmetic Program</li>
-        <img src="./week1_imgs/user_input.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
-
-        <li>Mini Project – Intro Profile Program</li>
-        <img src="./week1_imgs/mini_project.png" style="width:100%; max-width:600px; height:auto; border-radius:8px; margin-top:10px;">
-    </ul>
-</section>
-
-<footer>
-    <p style="text-align: center; color: #777; font-size: 0.8em;">&copy; 2026 Python Programming Basics Tutorial</p>
-</footer>
-
 </body>
+
 </html>

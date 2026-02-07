@@ -1,11 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Week 2 - Data Manipulation & Visualization</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .week-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .week-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .week-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .week-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .objective {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 3rem;
+        }
+
+        .objective h2 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .objective p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            background: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .day-title {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .task-definition {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 0.5rem;
+        }
+
+        .code-snippet {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .code-snippet pre {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .code-snippet .keyword {
+            color: #2563eb;
+        }
+
+        .code-snippet .string {
+            color: #059669;
+        }
+
+        .code-snippet .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .visual-box {
+            background: var(--bg-color);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .visual-box h4 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .visual-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .chart-placeholder {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-color) 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 1rem;
+            text-align: center;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-placeholder::before {
+            content: "📊";
+            font-size: 3rem;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>week2</h1>
+    <div class="week-container">
+        <a href="../final_year_internship.html" class="back-link">← Back to Internship Weeks</a>
+
+        <div class="week-header">
+            <h1>Week 2</h1>
+            <p class="subtitle">Data Manipulation & Visual Interpretation</p>
+        </div>
+
+        <div class="objective">
+            <h2>Objective</h2>
+            <p>Learn data manipulation and visual interpretation.</p>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">1</div>
+                <h3 class="day-title">Pandas Introduction</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Studied Series and DataFrame structures, data loading (CSV), and basic
+                inspection methods.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Creating Series</span>
+series = pd.Series([1, 2, 3, 4, 5])
+
+<span class="comment"># Creating DataFrame</span>
+data = {
+    <span class="string">'Name'</span>: [<span class="string">'Alice'</span>, <span class="string">'Bob'</span>, <span class="string">'Charlie'</span>],
+    <span class="string">'Age'</span>: [25, 30, 35],
+    <span class="string">'City'</span>: [<span class="string">'NYC'</span>, <span class="string">'LA'</span>, <span class="string">'Chicago'</span>]
+}
+df = pd.DataFrame(data)
+
+<span class="comment"># Loading CSV</span>
+df = pd.read_csv(<span class="string">'data.csv'</span>)
+
+<span class="comment"># Basic Inspection</span>
+df.head()  <span class="comment"># First 5 rows</span>
+df.info()  <span class="comment"># Data types and info</span>
+df.describe()  <span class="comment"># Statistical summary</span></pre>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">2</div>
+                <h3 class="day-title">Data Cleaning</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Handled missing values, duplicates, and data type conversions using
+                Pandas.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Handling Missing Values</span>
+df.dropna()  <span class="comment"># Remove rows with NaN</span>
+df.fillna(0)  <span class="comment"># Fill NaN with 0</span>
+df.fillna(df.mean())  <span class="comment"># Fill with mean</span>
+
+<span class="comment"># Removing Duplicates</span>
+df.drop_duplicates()
+
+<span class="comment"># Data Type Conversion</span>
+df[<span class="string">'column'</span>] = df[<span class="string">'column'</span>].astype(<span class="string">'int'</span>)
+df[<span class="string">'date'</span>] = pd.to_datetime(df[<span class="string">'date'</span>])</pre>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">3</div>
+                <h3 class="day-title">Exploratory Data Analysis (EDA)</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Analyzed datasets using descriptive statistics and correlation
+                analysis.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Descriptive Statistics</span>
+df.describe()  <span class="comment"># Mean, std, min, max, quartiles</span>
+df.mean()  <span class="comment"># Average values</span>
+df.median()  <span class="comment"># Median values</span>
+df.mode()  <span class="comment"># Most frequent values</span>
+
+<span class="comment"># Correlation Analysis</span>
+correlation_matrix = df.corr()
+print(correlation_matrix)
+
+<span class="comment"># Value Counts</span>
+df[<span class="string">'category'</span>].value_counts()</pre>
+            </div>
+            <div class="visual-box">
+                <h4>EDA Insights</h4>
+                <p>Understanding data distribution, relationships, and patterns</p>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">4</div>
+                <h3 class="day-title">Data Visualization</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Created line plots, bar charts, histograms, and scatter plots using
+                Matplotlib.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Line Plot</span>
+plt.plot(df[<span class="string">'x'</span>], df[<span class="string">'y'</span>])
+plt.title(<span class="string">'Line Plot'</span>)
+plt.show()
+
+<span class="comment"># Bar Chart</span>
+df[<span class="string">'category'</span>].value_counts().plot(kind=<span class="string">'bar'</span>)
+plt.title(<span class="string">'Bar Chart'</span>)
+plt.show()
+
+<span class="comment"># Histogram</span>
+df[<span class="string">'values'</span>].hist(bins=20)
+plt.title(<span class="string">'Histogram'</span>)
+plt.show()
+
+<span class="comment"># Scatter Plot</span>
+plt.scatter(df[<span class="string">'x'</span>], df[<span class="string">'y'</span>])
+plt.title(<span class="string">'Scatter Plot'</span>)
+plt.show()</pre>
+            </div>
+            <div class="chart-placeholder"></div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">5</div>
+                <h3 class="day-title">Mini Task</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Performed complete EDA on a sample dataset and summarized insights.
+            </div>
+            <div class="visual-box">
+                <h4>Complete EDA Workflow</h4>
+                <p>Data Loading → Cleaning → Analysis → Visualization → Insights</p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

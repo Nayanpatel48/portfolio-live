@@ -1,11 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Week 3 - Mathematical Foundation for ML</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .week-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .week-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .week-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .week-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .objective {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 3rem;
+        }
+
+        .objective h2 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .objective p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            background: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .day-title {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .task-definition {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 0.5rem;
+        }
+
+        .code-snippet {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .code-snippet pre {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .code-snippet .keyword {
+            color: #2563eb;
+        }
+
+        .code-snippet .string {
+            color: #059669;
+        }
+
+        .code-snippet .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .visual-box {
+            background: var(--bg-color);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .visual-box h4 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .visual-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .formula-box {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-box .formula {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>week3</h1>
+    <div class="week-container">
+        <a href="../final_year_internship.html" class="back-link">← Back to Internship Weeks</a>
+
+        <div class="week-header">
+            <h1>Week 3</h1>
+            <p class="subtitle">Mathematical Foundation for ML Algorithms</p>
+        </div>
+
+        <div class="objective">
+            <h2>Objective</h2>
+            <p>Build mathematical foundation for ML algorithms.</p>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">1</div>
+                <h3 class="day-title">Statistics Basics</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Learned mean, median, mode, variance, and standard deviation.
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>Mean</h4>
+                    <p>Average value</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Median</h4>
+                    <p>Middle value</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Mode</h4>
+                    <p>Most frequent</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Variance</h4>
+                    <p>Spread measure</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Std Dev</h4>
+                    <p>√Variance</p>
+                </div>
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+data = [10, 20, 30, 40, 50]
+
+<span class="comment"># Mean</span>
+mean = np.mean(data)  <span class="comment"># 30</span>
+
+<span class="comment"># Median</span>
+median = np.median(data)  <span class="comment"># 30</span>
+
+<span class="comment"># Mode (using scipy)</span>
+<span class="keyword">from</span> scipy <span class="keyword">import</span> stats
+mode = stats.mode(data)
+
+<span class="comment"># Variance</span>
+variance = np.var(data)
+
+<span class="comment"># Standard Deviation</span>
+std_dev = np.std(data)</pre>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">2</div>
+                <h3 class="day-title">Probability Concepts</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Studied probability distributions and real-world probability examples.
+            </div>
+            <div class="formula-box">
+                <p><strong>Probability Formula:</strong></p>
+                <div class="formula">P(A) = Number of favorable outcomes / Total outcomes</div>
+            </div>
+            <div class="visual-box">
+                <h4>Common Distributions</h4>
+                <p>Normal, Binomial, Poisson, Uniform</p>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">3</div>
+                <h3 class="day-title">Linear Algebra</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Worked with vectors, matrices, transpose, and matrix multiplication.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="comment"># Vectors</span>
+vector = np.array([1, 2, 3])
+
+<span class="comment"># Matrices</span>
+matrix_a = np.array([[1, 2], [3, 4]])
+matrix_b = np.array([[5, 6], [7, 8]])
+
+<span class="comment"># Transpose</span>
+transpose = matrix_a.T
+
+<span class="comment"># Matrix Multiplication</span>
+result = np.dot(matrix_a, matrix_b)
+<span class="comment"># or</span>
+result = matrix_a @ matrix_b
+
+<span class="comment"># Element-wise operations</span>
+element_wise = matrix_a * matrix_b</pre>
+            </div>
+            <div class="formula-box">
+                <p><strong>Matrix Multiplication:</strong></p>
+                <div class="formula">C = A × B</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                    (m×n) × (n×p) = (m×p)
+                </p>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">4</div>
+                <h3 class="day-title">Calculus for ML</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Understood gradients and their role in optimization.
+            </div>
+            <div class="formula-box">
+                <p><strong>Gradient (Derivative):</strong></p>
+                <div class="formula">∇f = (∂f/∂x, ∂f/∂y, ...)</div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                    Used in gradient descent for optimization
+                </p>
+            </div>
+            <div class="visual-box">
+                <h4>Gradient Descent</h4>
+                <p>Finding minimum by following the steepest descent direction</p>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">5</div>
+                <h3 class="day-title">Practice Session</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Solved numerical problems related to statistics and linear algebra.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="comment"># Example: Calculate statistics</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+scores = [85, 90, 78, 92, 88, 76, 95, 82]
+
+<span class="comment"># Statistics</span>
+mean_score = np.mean(scores)
+std_score = np.std(scores)
+
+<span class="comment"># Example: Matrix operations</span>
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[2, 0], [0, 2]])
+
+<span class="comment"># Matrix multiplication</span>
+C = A @ B
+
+<span class="comment"># Determinant</span>
+det_A = np.linalg.det(A)</pre>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
