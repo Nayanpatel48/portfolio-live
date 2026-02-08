@@ -1,11 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Week 4 - ML Concepts & Workflow</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .week-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .week-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .week-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .week-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .objective {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 3rem;
+        }
+
+        .objective h2 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .objective p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            background: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .day-title {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .task-definition {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 0.5rem;
+        }
+
+        .code-snippet {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .code-snippet pre {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .code-snippet .keyword {
+            color: #2563eb;
+        }
+
+        .code-snippet .string {
+            color: #059669;
+        }
+
+        .code-snippet .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .visual-box {
+            background: var(--bg-color);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .visual-box h4 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .visual-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .ml-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .ml-type-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .ml-type-card h4 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .ml-type-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .workflow-step {
+            background: var(--bg-color);
+            border-left: 3px solid var(--accent-color);
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .metric-item h4 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .metric-item p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>week4</h1>
+    <div class="week-container">
+        <a href="../final_year_internship.html" class="back-link">← Back to Internship Weeks</a>
+
+        <div class="week-header">
+            <h1>Week 4</h1>
+            <p class="subtitle">ML Concepts & Workflow</p>
+        </div>
+
+        <div class="objective">
+            <h2>Objective</h2>
+            <p>Understand ML concepts and workflow.</p>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">1</div>
+                <h3 class="day-title">ML Introduction</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Studied types of ML – supervised, unsupervised, and reinforcement
+                learning.
+            </div>
+            <div class="ml-types-grid">
+                <div class="ml-type-card">
+                    <h4>Supervised Learning</h4>
+                    <p>Learning with labeled data (Classification & Regression)</p>
+                </div>
+                <div class="ml-type-card">
+                    <h4>Unsupervised Learning</h4>
+                    <p>Learning from unlabeled data (Clustering & Dimensionality Reduction)</p>
+                </div>
+                <div class="ml-type-card">
+                    <h4>Reinforcement Learning</h4>
+                    <p>Learning through interaction and rewards</p>
+                </div>
+            </div>
+            <div class="visual-box">
+                <h4>ML Learning Types</h4>
+                <p>Supervised → Unsupervised → Reinforcement</p>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">2</div>
+                <h3 class="day-title">ML Workflow</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Learned data preprocessing, feature selection, model training, and
+                evaluation.
+            </div>
+            <div class="workflow-steps">
+                <div class="workflow-step">1. Data Collection & Loading</div>
+                <div class="workflow-step">2. Data Preprocessing (cleaning, normalization)</div>
+                <div class="workflow-step">3. Feature Selection & Engineering</div>
+                <div class="workflow-step">4. Model Selection & Training</div>
+                <div class="workflow-step">5. Model Evaluation & Validation</div>
+                <div class="workflow-step">6. Model Deployment & Monitoring</div>
+            </div>
+            <div class="code-snippet">
+                <pre><span class="comment"># ML Workflow Example</span>
+<span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler
+<span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+<span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier
+
+<span class="comment"># 1. Data Preprocessing</span>
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+<span class="comment"># 2. Feature Selection (if needed)</span>
+<span class="comment"># 3. Train-Test Split</span>
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=42
+)
+
+<span class="comment"># 4. Model Training</span>
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+
+<span class="comment"># 5. Model Evaluation</span>
+accuracy = model.score(X_test, y_test)</pre>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">3</div>
+                <h3 class="day-title">Train-Test Split</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Implemented train-test split using scikit-learn.
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Load data</span>
+df = pd.read_csv(<span class="string">'dataset.csv'</span>)
+X = df.drop(<span class="string">'target'</span>, axis=1)
+y = df[<span class="string">'target'</span>]
+
+<span class="comment"># Train-Test Split (80-20 split)</span>
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, 
+    test_size=0.2,      <span class="comment"># 20% for testing</span>
+    random_state=42,     <span class="comment"># For reproducibility</span>
+    stratify=y          <span class="comment"># Maintain class distribution</span>
+)
+
+<span class="comment"># Check shapes</span>
+<span class="keyword">print</span>(<span class="string">f"Training set: {X_train.shape}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Test set: {X_test.shape}"</span>)</pre>
+            </div>
+            <div class="visual-box">
+                <h4>Data Split</h4>
+                <p>Training Set (80%) → Model Learning | Test Set (20%) → Model Evaluation</p>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">4</div>
+                <h3 class="day-title">Model Evaluation Metrics</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Studied accuracy, precision, recall, F1-score, and confusion matrix.
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <h4>Accuracy</h4>
+                    <p>Overall correctness</p>
+                </div>
+                <div class="metric-item">
+                    <h4>Precision</h4>
+                    <p>True positives / (TP + FP)</p>
+                </div>
+                <div class="metric-item">
+                    <h4>Recall</h4>
+                    <p>True positives / (TP + FN)</p>
+                </div>
+                <div class="metric-item">
+                    <h4>F1-Score</h4>
+                    <p>Harmonic mean of precision & recall</p>
+                </div>
+                <div class="metric-item">
+                    <h4>Confusion Matrix</h4>
+                    <p>TP, TN, FP, FN visualization</p>
+                </div>
+            </div>
+            <div class="code-snippet">
+                <pre><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> (
+    accuracy_score, precision_score, 
+    recall_score, f1_score, confusion_matrix
+)
+
+<span class="comment"># Make predictions</span>
+y_pred = model.predict(X_test)
+
+<span class="comment"># Calculate metrics</span>
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+<span class="comment"># Confusion Matrix</span>
+cm = confusion_matrix(y_test, y_pred)
+<span class="comment"># [[TN, FP],
+#  [FN, TP]]</span>
+
+<span class="keyword">print</span>(<span class="string">f"Accuracy: {accuracy:.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Precision: {precision:.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"Recall: {recall:.2f}"</span>)
+<span class="keyword">print</span>(<span class="string">f"F1-Score: {f1:.2f}"</span>)</pre>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <div class="day-number">5</div>
+                <h3 class="day-title">ML Case Study</h3>
+            </div>
+            <div class="task-definition">
+                <strong>Task Definition:</strong> Reviewed a real-world ML project lifecycle.
+            </div>
+            <div class="visual-box">
+                <h4>Real-World ML Project Lifecycle</h4>
+                <p>Problem Definition → Data Collection → EDA → Preprocessing → Model Development → Evaluation →
+                    Deployment → Monitoring</p>
+            </div>
+            <div class="workflow-steps">
+                <div class="workflow-step">1. Define business problem and objectives</div>
+                <div class="workflow-step">2. Collect and understand domain data</div>
+                <div class="workflow-step">3. Perform exploratory data analysis</div>
+                <div class="workflow-step">4. Clean and preprocess data</div>
+                <div class="workflow-step">5. Feature engineering and selection</div>
+                <div class="workflow-step">6. Model selection and hyperparameter tuning</div>
+                <div class="workflow-step">7. Model validation and testing</div>
+                <div class="workflow-step">8. Deployment and production monitoring</div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

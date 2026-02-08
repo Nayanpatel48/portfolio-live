@@ -4,25 +4,1159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Final Year Internship</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            width: 280px;
+            background-color: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            padding: 1.5rem 0;
+        }
+
+        .sidebar-header {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.25rem;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .week-item {
+            padding: 0 1.5rem;
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 500;
+            color: #1a1a1a;
+            transition: color 0.2s ease;
+        }
+
+        .week-header:hover {
+            color: #2563eb;
+        }
+
+        .week-header.active {
+            color: #2563eb;
+        }
+
+        .week-toggle {
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .week-toggle.expanded {
+            transform: rotate(90deg);
+        }
+
+        .topics-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 1rem;
+        }
+
+        .topics-list.expanded {
+            max-height: 1000px;
+        }
+
+        .topic-item {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            cursor: pointer;
+            color: #666666;
+            font-size: 0.9rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+        }
+
+        .topic-item:hover {
+            color: #2563eb;
+            padding-left: 1.75rem;
+        }
+
+        .topic-item.active {
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        /* Right Content Area */
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            background-color: #ffffff;
+            padding: 2rem;
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .week-header-content {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .week-header-content h1 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .week-header-content .subtitle {
+            color: #666666;
+            font-size: 1.1rem;
+        }
+
+        .objective {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #2563eb;
+            margin-bottom: 3rem;
+        }
+
+        .objective h2 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .objective p {
+            color: #666666;
+            line-height: 1.8;
+        }
+
+        .day-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            scroll-margin-top: 2rem;
+        }
+
+        .day-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-card.highlight {
+            border: 2px solid #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            background: #2563eb;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .day-title {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .task-definition {
+            color: #666666;
+            line-height: 1.8;
+            margin-top: 0.5rem;
+        }
+
+        .code-snippet {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .code-snippet pre {
+            margin: 0;
+            padding: 0;
+            color: #1a1a1a;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .code-snippet .keyword {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .code-snippet .string {
+            color: #059669;
+        }
+
+        .code-snippet .comment {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .code-snippet .function {
+            color: #7c3aed;
+        }
+
+        .code-snippet .number {
+            color: #dc2626;
+        }
+
+        .visual-box {
+            background: #ffffff;
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .visual-box h4 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .visual-box p {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        .ml-types-grid,
+        .stats-grid,
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .ml-type-card,
+        .stat-item,
+        .metric-item {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .ml-type-card h4,
+        .stat-item h4,
+        .metric-item h4 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .ml-type-card p,
+        .stat-item p,
+        .metric-item p {
+            color: #666666;
+            font-size: 0.85rem;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .workflow-step {
+            background: #ffffff;
+            border-left: 3px solid #2563eb;
+            padding: 0.75rem 1rem;
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        .formula-box {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-box .formula {
+            color: #2563eb;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+
+        .chart-placeholder {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 1rem;
+            text-align: center;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-placeholder::before {
+            content: "📊";
+            font-size: 3rem;
+        }
+
+        .empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666666;
+            font-size: 1.1rem;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Internship Weeks</h2>
-    <p>
-    <ul><a href="./internship/week1.html">Week 1</a></ul>
-    <ul><a href="./internship/week2.html">Week 2</a></ul>
-    <ul><a href="./internship/week3.html">Week 3</a></ul>
-    <!-- <ul><a href="./internship/week4.html">Week 4</a></ul>
-        <ul><a href="./internship/week5.html">Week 5</a></ul>
-        <ul><a href="./internship/week6.html">Week 6</a></ul>
-        <ul><a href="./internship/week7.html">Week 7</a></ul>
-        <ul><a href="./internship/week8.html">Week 8</a></ul>
-        <ul><a href="./internship/week9.html">Week 9</a></ul>
-        <ul><a href="./internship/week10.html">Week 10</a></ul>
-        <ul><a href="./internship/week11.html">Week 11</a></ul>
-        <ul><a href="./internship/week12.html">Week 12</a></ul> -->
-    </p>
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Internship Weeks</h2>
+        </div>
+
+        <div class="week-item">
+            <div class="week-header" onclick="toggleWeek(1)">
+                <span>Week 1</span>
+                <span class="week-toggle">▶</span>
+            </div>
+            <div class="topics-list" id="topics-week1">
+                <div class="topic-item" onclick="loadTopic(1, 1)">Day 1 – Internship Induction & AI Overview</div>
+                <div class="topic-item" onclick="loadTopic(1, 2)">Day 2 – Python Basics</div>
+                <div class="topic-item" onclick="loadTopic(1, 3)">Day 3 – Functions & Modules</div>
+                <div class="topic-item" onclick="loadTopic(1, 4)">Day 4 – Data Structures</div>
+                <div class="topic-item" onclick="loadTopic(1, 5)">Day 5 – NumPy Basics</div>
+            </div>
+        </div>
+
+        <div class="week-item">
+            <div class="week-header" onclick="toggleWeek(2)">
+                <span>Week 2</span>
+                <span class="week-toggle">▶</span>
+            </div>
+            <div class="topics-list" id="topics-week2">
+                <div class="topic-item" onclick="loadTopic(2, 1)">Day 1 – Pandas Introduction</div>
+                <div class="topic-item" onclick="loadTopic(2, 2)">Day 2 – Data Cleaning</div>
+                <div class="topic-item" onclick="loadTopic(2, 3)">Day 3 – Exploratory Data Analysis (EDA)</div>
+                <div class="topic-item" onclick="loadTopic(2, 4)">Day 4 – Data Visualization</div>
+                <div class="topic-item" onclick="loadTopic(2, 5)">Day 5 – Mini Task</div>
+            </div>
+        </div>
+
+        <div class="week-item">
+            <div class="week-header" onclick="toggleWeek(3)">
+                <span>Week 3</span>
+                <span class="week-toggle">▶</span>
+            </div>
+            <div class="topics-list" id="topics-week3">
+                <div class="topic-item" onclick="loadTopic(3, 1)">Day 1 – Statistics Basics</div>
+                <div class="topic-item" onclick="loadTopic(3, 2)">Day 2 – Probability Concepts</div>
+                <div class="topic-item" onclick="loadTopic(3, 3)">Day 3 – Linear Algebra</div>
+                <div class="topic-item" onclick="loadTopic(3, 4)">Day 4 – Calculus for ML</div>
+                <div class="topic-item" onclick="loadTopic(3, 5)">Day 5 – Practice Session</div>
+            </div>
+        </div>
+
+        <div class="week-item">
+            <div class="week-header" onclick="toggleWeek(4)">
+                <span>Week 4</span>
+                <span class="week-toggle">▶</span>
+            </div>
+            <div class="topics-list" id="topics-week4">
+                <div class="topic-item" onclick="loadTopic(4, 1)">Day 1 – ML Introduction</div>
+                <div class="topic-item" onclick="loadTopic(4, 2)">Day 2 – ML Workflow</div>
+                <div class="topic-item" onclick="loadTopic(4, 3)">Day 3 – Train-Test Split</div>
+                <div class="topic-item" onclick="loadTopic(4, 4)">Day 4 – Model Evaluation Metrics</div>
+                <div class="topic-item" onclick="loadTopic(4, 5)">Day 5 – ML Case Study</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Content Area -->
+    <div class="content-area" id="contentArea">
+        <div class="empty-state">
+            Select a week and topic from the sidebar to view content
+        </div>
+    </div>
+
+    <script>
+        // Week data structure
+        const weekData = {
+            1: {
+                title: "Week 1",
+                subtitle: "Programming & Data-Handling Fundamentals",
+                objective: "Build strong programming and data-handling fundamentals.",
+                days: [
+                    {
+                        number: 1,
+                        title: "Internship Induction & AI Overview",
+                        task: "Understood internship objectives, evaluation criteria, and tools. Studied basics of Artificial Intelligence, Machine Learning, and Deep Learning, including real-world applications.",
+                        type: "visual",
+                        visualContent: { title: "AI Learning Path", text: "AI → Machine Learning → Deep Learning" }
+                    },
+                    {
+                        number: 2,
+                        title: "Python Basics",
+                        task: "Practiced Python syntax, variables, data types, conditional statements, and loops. Wrote basic programs for arithmetic operations and decision-making.",
+                        type: "code",
+                        code: `# Variables and Data Types
+name = "Python"  # String
+age = 25  # Integer
+height = 5.9  # Float
+is_student = True  # Boolean
+
+# Conditional Statements
+if age >= 18:
+    print("Adult")
+else:
+    print("Minor")
+
+# Loops
+for i in range(5):
+    print(i)`
+                    },
+                    {
+                        number: 3,
+                        title: "Functions & Modules",
+                        task: "Implemented user-defined functions, lambda functions, and explored built-in Python modules such as math and random.",
+                        type: "code",
+                        code: `# User-defined Function
+def calculate_area(radius):
+    return 3.14159 * radius ** 2
+
+# Lambda Function
+square = lambda x: x ** 2
+
+# Using Built-in Modules
+import math
+import random
+
+result = math.sqrt(16)
+random_num = random.randint(1, 100)`
+                    },
+                    {
+                        number: 4,
+                        title: "Data Structures",
+                        task: "Worked with lists, tuples, sets, and dictionaries. Performed operations like indexing, slicing, and iteration.",
+                        type: "code",
+                        code: `# Lists (Mutable)
+fruits = ["apple", "banana", "cherry"]
+fruits[0] = "orange"  # Can modify
+
+# Tuples (Immutable)
+coordinates = (10, 20)
+
+# Sets (Unique elements)
+unique_numbers = {1, 2, 3, 3, 4}  # {1, 2, 3, 4}
+
+# Dictionaries (Key-Value pairs)
+student = {
+    "name": "John",
+    "age": 20,
+    "grade": "A"
+}`
+                    },
+                    {
+                        number: 5,
+                        title: "NumPy Basics",
+                        task: "Learned NumPy arrays, array operations, reshaping, and mathematical computations for numerical data.",
+                        type: "code",
+                        code: `import numpy as np
+
+# Creating Arrays
+arr = np.array([1, 2, 3, 4, 5])
+matrix = np.array([[1, 2], [3, 4]])
+
+# Array Operations
+result = arr * 2  # [2, 4, 6, 8, 10]
+sum_arr = np.sum(arr)
+
+# Reshaping
+reshaped = arr.reshape(5, 1)
+
+# Mathematical Operations
+mean_val = np.mean(arr)
+std_val = np.std(arr)`
+                    }
+                ]
+            },
+            2: {
+                title: "Week 2",
+                subtitle: "Data Manipulation & Visual Interpretation",
+                objective: "Learn data manipulation and visual interpretation.",
+                days: [
+                    {
+                        number: 1,
+                        title: "Pandas Introduction",
+                        task: "Studied Series and DataFrame structures, data loading (CSV), and basic inspection methods.",
+                        type: "code",
+                        code: `import pandas as pd
+
+# Creating Series
+series = pd.Series([1, 2, 3, 4, 5])
+
+# Creating DataFrame
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['NYC', 'LA', 'Chicago']
+}
+df = pd.DataFrame(data)
+
+# Loading CSV
+df = pd.read_csv('data.csv')
+
+# Basic Inspection
+df.head()  # First 5 rows
+df.info()  # Data types and info
+df.describe()  # Statistical summary`
+                    },
+                    {
+                        number: 2,
+                        title: "Data Cleaning",
+                        task: "Handled missing values, duplicates, and data type conversions using Pandas.",
+                        type: "code",
+                        code: `import pandas as pd
+
+# Handling Missing Values
+df.dropna()  # Remove rows with NaN
+df.fillna(0)  # Fill NaN with 0
+df.fillna(df.mean())  # Fill with mean
+
+# Removing Duplicates
+df.drop_duplicates()
+
+# Data Type Conversion
+df['column'] = df['column'].astype('int')
+df['date'] = pd.to_datetime(df['date'])`
+                    },
+                    {
+                        number: 3,
+                        title: "Exploratory Data Analysis (EDA)",
+                        task: "Analyzed datasets using descriptive statistics and correlation analysis.",
+                        type: "code",
+                        code: `import pandas as pd
+
+# Descriptive Statistics
+df.describe()  # Mean, std, min, max, quartiles
+df.mean()  # Average values
+df.median()  # Median values
+df.mode()  # Most frequent values
+
+# Correlation Analysis
+correlation_matrix = df.corr()
+print(correlation_matrix)
+
+# Value Counts
+df['category'].value_counts()`,
+                        visual: { title: "EDA Insights", text: "Understanding data distribution, relationships, and patterns" }
+                    },
+                    {
+                        number: 4,
+                        title: "Data Visualization",
+                        task: "Created line plots, bar charts, histograms, and scatter plots using Matplotlib.",
+                        type: "code",
+                        code: `import matplotlib.pyplot as plt
+import pandas as pd
+
+# Line Plot
+plt.plot(df['x'], df['y'])
+plt.title('Line Plot')
+plt.show()
+
+# Bar Chart
+df['category'].value_counts().plot(kind='bar')
+plt.title('Bar Chart')
+plt.show()
+
+# Histogram
+df['values'].hist(bins=20)
+plt.title('Histogram')
+plt.show()
+
+# Scatter Plot
+plt.scatter(df['x'], df['y'])
+plt.title('Scatter Plot')
+plt.show()`,
+                        chart: true
+                    },
+                    {
+                        number: 5,
+                        title: "Mini Task",
+                        task: "Performed complete EDA on a sample dataset and summarized insights.",
+                        type: "visual",
+                        visualContent: { title: "Complete EDA Workflow", text: "Data Loading → Cleaning → Analysis → Visualization → Insights" }
+                    }
+                ]
+            },
+            3: {
+                title: "Week 3",
+                subtitle: "Mathematical Foundation for ML Algorithms",
+                objective: "Build mathematical foundation for ML algorithms.",
+                days: [
+                    {
+                        number: 1,
+                        title: "Statistics Basics",
+                        task: "Learned mean, median, mode, variance, and standard deviation.",
+                        type: "stats",
+                        code: `import numpy as np
+
+data = [10, 20, 30, 40, 50]
+
+# Mean
+mean = np.mean(data)  # 30
+
+# Median
+median = np.median(data)  # 30
+
+# Mode (using scipy)
+from scipy import stats
+mode = stats.mode(data)
+
+# Variance
+variance = np.var(data)
+
+# Standard Deviation
+std_dev = np.std(data)`
+                    },
+                    {
+                        number: 2,
+                        title: "Probability Concepts",
+                        task: "Studied probability distributions and real-world probability examples.",
+                        type: "formula",
+                        formula: "P(A) = Number of favorable outcomes / Total outcomes",
+                        visual: { title: "Common Distributions", text: "Normal, Binomial, Poisson, Uniform" }
+                    },
+                    {
+                        number: 3,
+                        title: "Linear Algebra",
+                        task: "Worked with vectors, matrices, transpose, and matrix multiplication.",
+                        type: "code",
+                        code: `import numpy as np
+
+# Vectors
+vector = np.array([1, 2, 3])
+
+# Matrices
+matrix_a = np.array([[1, 2], [3, 4]])
+matrix_b = np.array([[5, 6], [7, 8]])
+
+# Transpose
+transpose = matrix_a.T
+
+# Matrix Multiplication
+result = np.dot(matrix_a, matrix_b)
+# or
+result = matrix_a @ matrix_b
+
+# Element-wise operations
+element_wise = matrix_a * matrix_b`,
+                        formula: "C = A × B",
+                        formulaDesc: "(m×n) × (n×p) = (m×p)"
+                    },
+                    {
+                        number: 4,
+                        title: "Calculus for ML",
+                        task: "Understood gradients and their role in optimization.",
+                        type: "formula",
+                        formula: "∇f = (∂f/∂x, ∂f/∂y, ...)",
+                        formulaDesc: "Used in gradient descent for optimization",
+                        visual: { title: "Gradient Descent", text: "Finding minimum by following the steepest descent direction" }
+                    },
+                    {
+                        number: 5,
+                        title: "Practice Session",
+                        task: "Solved numerical problems related to statistics and linear algebra.",
+                        type: "code",
+                        code: `# Example: Calculate statistics
+import numpy as np
+
+scores = [85, 90, 78, 92, 88, 76, 95, 82]
+
+# Statistics
+mean_score = np.mean(scores)
+std_score = np.std(scores)
+
+# Example: Matrix operations
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[2, 0], [0, 2]])
+
+# Matrix multiplication
+C = A @ B
+
+# Determinant
+det_A = np.linalg.det(A)`
+                    }
+                ]
+            },
+            4: {
+                title: "Week 4",
+                subtitle: "ML Concepts & Workflow",
+                objective: "Understand ML concepts and workflow.",
+                days: [
+                    {
+                        number: 1,
+                        title: "ML Introduction",
+                        task: "Studied types of ML – supervised, unsupervised, and reinforcement learning.",
+                        type: "ml-types",
+                        visual: { title: "ML Learning Types", text: "Supervised → Unsupervised → Reinforcement" }
+                    },
+                    {
+                        number: 2,
+                        title: "ML Workflow",
+                        task: "Learned data preprocessing, feature selection, model training, and evaluation.",
+                        type: "workflow",
+                        code: `# ML Workflow Example
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
+# 1. Data Preprocessing
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# 2. Feature Selection (if needed)
+# 3. Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=42
+)
+
+# 4. Model Training
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+
+# 5. Model Evaluation
+accuracy = model.score(X_test, y_test)`
+                    },
+                    {
+                        number: 3,
+                        title: "Train-Test Split",
+                        task: "Implemented train-test split using scikit-learn.",
+                        type: "code",
+                        code: `from sklearn.model_selection import train_test_split
+import pandas as pd
+
+# Load data
+df = pd.read_csv('dataset.csv')
+X = df.drop('target', axis=1)
+y = df['target']
+
+# Train-Test Split (80-20 split)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, 
+    test_size=0.2,      # 20% for testing
+    random_state=42,     # For reproducibility
+    stratify=y          # Maintain class distribution
+)
+
+# Check shapes
+print(f"Training set: {X_train.shape}")
+print(f"Test set: {X_test.shape}")`,
+                        visual: { title: "Data Split", text: "Training Set (80%) → Model Learning | Test Set (20%) → Model Evaluation" }
+                    },
+                    {
+                        number: 4,
+                        title: "Model Evaluation Metrics",
+                        task: "Studied accuracy, precision, recall, F1-score, and confusion matrix.",
+                        type: "metrics",
+                        code: `from sklearn.metrics import (
+    accuracy_score, precision_score, 
+    recall_score, f1_score, confusion_matrix
+)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Calculate metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+# Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+# [[TN, FP],
+#  [FN, TP]]
+
+print(f"Accuracy: {accuracy:.2f}")
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
+print(f"F1-Score: {f1:.2f}")`
+                    },
+                    {
+                        number: 5,
+                        title: "ML Case Study",
+                        task: "Reviewed a real-world ML project lifecycle.",
+                        type: "workflow",
+                        visual: { title: "Real-World ML Project Lifecycle", text: "Problem Definition → Data Collection → EDA → Preprocessing → Model Development → Evaluation → Deployment → Monitoring" }
+                    }
+                ]
+            }
+        };
+
+        let currentWeek = null;
+
+        function toggleWeek(weekNum) {
+            const topicsList = document.getElementById(`topics-week${weekNum}`);
+            const weekHeader = event.currentTarget;
+            const toggle = weekHeader.querySelector('.week-toggle');
+
+            const isExpanded = topicsList.classList.contains('expanded');
+            const isNewWeek = currentWeek !== weekNum;
+
+            // Close all other weeks
+            document.querySelectorAll('.topics-list').forEach(list => {
+                if (list.id !== `topics-week${weekNum}`) {
+                    list.classList.remove('expanded');
+                }
+            });
+            document.querySelectorAll('.week-toggle').forEach(t => {
+                if (t !== toggle) {
+                    t.classList.remove('expanded');
+                }
+            });
+            document.querySelectorAll('.week-header').forEach(h => {
+                if (h !== weekHeader) {
+                    h.classList.remove('active');
+                }
+            });
+
+            // Toggle current week
+            topicsList.classList.toggle('expanded');
+            toggle.classList.toggle('expanded');
+            weekHeader.classList.toggle('active');
+
+            // Load week content if expanding
+            if (!isExpanded) {
+                const wasDifferentWeek = currentWeek !== null && currentWeek !== weekNum;
+                currentWeek = weekNum;
+                loadWeek(weekNum);
+
+                // If it's a new week (different from previous), automatically scroll to first topic
+                if (wasDifferentWeek) {
+                    setTimeout(() => {
+                        const dayCard = document.getElementById(`day-${weekNum}-1`);
+                        if (dayCard) {
+                            dayCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            dayCard.classList.add('highlight');
+                            setTimeout(() => {
+                                dayCard.classList.remove('highlight');
+                            }, 2000);
+                        }
+                    }, 200);
+                }
+            } else {
+                // If collapsing, reset current week
+                currentWeek = null;
+            }
+        }
+
+        function loadWeek(weekNum) {
+            const week = weekData[weekNum];
+            if (!week) return;
+
+            const contentArea = document.getElementById('contentArea');
+            let html = `
+                <div class="content-container">
+                    <div class="week-header-content">
+                        <h1>${week.title}</h1>
+                        <p class="subtitle">${week.subtitle}</p>
+                    </div>
+                    <div class="objective">
+                        <h2>Objective</h2>
+                        <p>${week.objective}</p>
+                    </div>
+            `;
+
+            week.days.forEach(day => {
+                html += renderDayCard(day, weekNum);
+            });
+
+            html += '</div>';
+            contentArea.innerHTML = html;
+
+            // Remove active state from all topics
+            document.querySelectorAll('.topic-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Auto-select first topic of the week
+            const firstTopic = document.querySelector(`#topics-week${weekNum} .topic-item`);
+            if (firstTopic) {
+                firstTopic.classList.add('active');
+            }
+        }
+
+        function loadTopic(weekNum, dayNum) {
+            // Load week if not already loaded
+            const contentArea = document.getElementById('contentArea');
+            if (!contentArea.querySelector('.content-container')) {
+                loadWeek(weekNum);
+            }
+
+            // Wait for content to load, then scroll
+            setTimeout(() => {
+                const dayCard = document.getElementById(`day-${weekNum}-${dayNum}`);
+                if (dayCard) {
+                    // Remove highlight from all cards
+                    document.querySelectorAll('.day-card').forEach(card => {
+                        card.classList.remove('highlight');
+                    });
+
+                    // Highlight target card
+                    dayCard.classList.add('highlight');
+
+                    // Smooth scroll to card
+                    dayCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Remove highlight after animation
+                    setTimeout(() => {
+                        dayCard.classList.remove('highlight');
+                    }, 2000);
+                }
+            }, 100);
+
+            // Update active topic in sidebar
+            if (event && event.currentTarget) {
+                document.querySelectorAll('.topic-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        function cleanCode(code) {
+            if (!code) return '';
+            return code.trim().replace(/\n\s*\n\s*\n/g, '\n\n');
+        }
+
+        function renderCodeSnippet(code) {
+            if (!code) return '';
+            const cleaned = cleanCode(code);
+            return `<div class="code-snippet"><pre>${highlightCode(cleaned)}</pre></div>`;
+        }
+
+        function renderDayCard(day, weekNum) {
+            let html = `<div class="day-card" id="day-${weekNum}-${day.number}">`;
+            html += `
+                <div class="day-header">
+                    <div class="day-number">${day.number}</div>
+                    <h3 class="day-title">${day.title}</h3>
+                </div>
+                <div class="task-definition">
+                    <strong>Task Definition:</strong> ${day.task}
+                </div>
+            `;
+
+            if (day.type === 'code' && day.code) {
+                html += renderCodeSnippet(day.code);
+            }
+
+            if (day.type === 'formula' && day.formula) {
+                html += `
+                    <div class="formula-box">
+                        <p><strong>${day.formula.includes('∇') ? 'Gradient (Derivative):' : 'Probability Formula:'}</strong></p>
+                        <div class="formula">${day.formula}</div>
+                        ${day.formulaDesc ? `<p style="font-size: 0.85rem; color: #666666; margin-top: 0.5rem;">${day.formulaDesc}</p>` : ''}
+                    </div>
+                `;
+            }
+
+            if (day.type === 'ml-types') {
+                html += `
+                    <div class="ml-types-grid">
+                        <div class="ml-type-card">
+                            <h4>Supervised Learning</h4>
+                            <p>Learning with labeled data (Classification & Regression)</p>
+                        </div>
+                        <div class="ml-type-card">
+                            <h4>Unsupervised Learning</h4>
+                            <p>Learning from unlabeled data (Clustering & Dimensionality Reduction)</p>
+                        </div>
+                        <div class="ml-type-card">
+                            <h4>Reinforcement Learning</h4>
+                            <p>Learning through interaction and rewards</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (day.type === 'stats') {
+                html += `
+                    <div class="stats-grid">
+                        <div class="stat-item"><h4>Mean</h4><p>Average value</p></div>
+                        <div class="stat-item"><h4>Median</h4><p>Middle value</p></div>
+                        <div class="stat-item"><h4>Mode</h4><p>Most frequent</p></div>
+                        <div class="stat-item"><h4>Variance</h4><p>Spread measure</p></div>
+                        <div class="stat-item"><h4>Std Dev</h4><p>√Variance</p></div>
+                    </div>
+                `;
+                if (day.code) {
+                    html += renderCodeSnippet(day.code);
+                }
+            }
+
+            if (day.type === 'metrics') {
+                html += `
+                    <div class="metrics-grid">
+                        <div class="metric-item"><h4>Accuracy</h4><p>Overall correctness</p></div>
+                        <div class="metric-item"><h4>Precision</h4><p>True positives / (TP + FP)</p></div>
+                        <div class="metric-item"><h4>Recall</h4><p>True positives / (TP + FN)</p></div>
+                        <div class="metric-item"><h4>F1-Score</h4><p>Harmonic mean of precision & recall</p></div>
+                        <div class="metric-item"><h4>Confusion Matrix</h4><p>TP, TN, FP, FN visualization</p></div>
+                    </div>
+                `;
+                if (day.code) {
+                    html += renderCodeSnippet(day.code);
+                }
+            }
+
+            if (day.type === 'workflow') {
+                const steps = day.number === 2 ? [
+                    "1. Data Collection & Loading",
+                    "2. Data Preprocessing (cleaning, normalization)",
+                    "3. Feature Selection & Engineering",
+                    "4. Model Selection & Training",
+                    "5. Model Evaluation & Validation",
+                    "6. Model Deployment & Monitoring"
+                ] : [
+                    "1. Define business problem and objectives",
+                    "2. Collect and understand domain data",
+                    "3. Perform exploratory data analysis",
+                    "4. Clean and preprocess data",
+                    "5. Feature engineering and selection",
+                    "6. Model selection and hyperparameter tuning",
+                    "7. Model validation and testing",
+                    "8. Deployment and production monitoring"
+                ];
+                html += '<div class="workflow-steps">';
+                steps.forEach(step => {
+                    html += `<div class="workflow-step">${step}</div>`;
+                });
+                html += '</div>';
+                if (day.code) {
+                    html += renderCodeSnippet(day.code);
+                }
+            }
+
+            if (day.visual || day.visualContent) {
+                const visual = day.visual || day.visualContent;
+                html += `
+                    <div class="visual-box">
+                        <h4>${visual.title}</h4>
+                        <p>${visual.text}</p>
+                    </div>
+                `;
+            }
+
+            if (day.chart) {
+                html += '<div class="chart-placeholder"></div>';
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        function highlightCode(code) {
+            if (!code) return '';
+
+            // Escape HTML
+            let highlighted = code
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+
+            // Protect strings by replacing them with placeholders
+            const strings = [];
+            highlighted = highlighted.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, (match) => {
+                const placeholder = `__STR${strings.length}__`;
+                strings.push(match);
+                return placeholder;
+            });
+
+            // Highlight Python keywords
+            const keywords = /\b(def|import|from|as|if|else|elif|for|in|while|return|lambda|True|False|None|and|or|not|try|except|finally|with|class|pass|break|continue|yield|async|await|is|del|global|nonlocal)\b/g;
+            highlighted = highlighted.replace(keywords, '<span class="keyword">$1</span>');
+
+            // Highlight common built-in functions and libraries
+            highlighted = highlighted.replace(/\b(print|len|range|str|int|float|list|dict|set|tuple|max|min|sum|abs|round|type|isinstance)\b/g, '<span class="function">$1</span>');
+            highlighted = highlighted.replace(/\b(np|pd|plt|sklearn|scipy|matplotlib|pandas|numpy)\b/g, '<span class="function">$1</span>');
+
+            // Highlight numbers
+            highlighted = highlighted.replace(/\b(\d+\.?\d*)\b/g, '<span class="number">$1</span>');
+
+            // Restore strings with highlighting
+            strings.forEach((str, i) => {
+                highlighted = highlighted.replace(`__STR${i}__`, '<span class="string">' + str + '</span>');
+            });
+
+            // Highlight comments (last, so they override)
+            highlighted = highlighted.replace(/(#.*$)/gm, '<span class="comment">$1</span>');
+
+            return highlighted;
+        }
+    </script>
 </body>
 
 </html>
