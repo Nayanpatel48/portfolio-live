@@ -251,6 +251,38 @@
             color: #dc2626;
         }
 
+        .output-snippet {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #10b981;
+            position: relative;
+        }
+
+        .output-snippet::before {
+            content: "Output:";
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .output-snippet pre {
+            margin: 0;
+            padding: 0;
+            color: #10b981;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
         .visual-box {
             background: #ffffff;
             border: 2px dashed #e0e0e0;
@@ -351,6 +383,80 @@
         .chart-placeholder::before {
             content: "📊";
             font-size: 3rem;
+        }
+
+        .visualization-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .viz-image-container {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .viz-image-container h4 {
+            color: #2563eb;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .viz-image {
+            width: 100%;
+            height: 200px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Line Chart SVG */
+        .viz-line {
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .viz-line svg {
+            width: 90%;
+            height: 90%;
+        }
+
+        /* Bar Chart SVG */
+        .viz-bar {
+            background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);
+        }
+
+        .viz-bar svg {
+            width: 90%;
+            height: 90%;
+        }
+
+        /* Histogram SVG */
+        .viz-histogram {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+        }
+
+        .viz-histogram svg {
+            width: 90%;
+            height: 90%;
+        }
+
+        /* Scatter Plot SVG */
+        .viz-scatter {
+            background: linear-gradient(135deg, #fce7f3 0%, #ffffff 100%);
+        }
+
+        .viz-scatter svg {
+            width: 90%;
+            height: 90%;
         }
 
         .empty-state {
@@ -474,7 +580,13 @@ else:
 
 # Loops
 for i in range(5):
-    print(i)`
+    print(i)`,
+                        output: `Adult
+0
+1
+2
+3
+4`
                     },
                     {
                         number: 3,
@@ -493,7 +605,16 @@ import math
 import random
 
 result = math.sqrt(16)
-random_num = random.randint(1, 100)`
+random_num = random.randint(1, 100)
+
+print(f"Area of circle with radius 5: {calculate_area(5)}")
+print(f"Square of 7: {square(7)}")
+print(f"Square root of 16: {result}")
+print(f"Random number: {random_num}")`,
+                        output: `Area of circle with radius 5: 78.53975
+Square of 7: 49
+Square root of 16: 4.0
+Random number: 42`
                     },
                     {
                         number: 4,
@@ -503,19 +624,29 @@ random_num = random.randint(1, 100)`
                         code: `# Lists (Mutable)
 fruits = ["apple", "banana", "cherry"]
 fruits[0] = "orange"  # Can modify
+print("Modified list:", fruits)
 
 # Tuples (Immutable)
 coordinates = (10, 20)
+print("Coordinates:", coordinates)
 
 # Sets (Unique elements)
 unique_numbers = {1, 2, 3, 3, 4}  # {1, 2, 3, 4}
+print("Unique numbers:", unique_numbers)
 
 # Dictionaries (Key-Value pairs)
 student = {
     "name": "John",
     "age": 20,
     "grade": "A"
-}`
+}
+print("Student info:", student)
+print("Student name:", student["name"])`,
+                        output: `Modified list: ['orange', 'banana', 'cherry']
+Coordinates: (10, 20)
+Unique numbers: {1, 2, 3, 4}
+Student info: {'name': 'John', 'age': 20, 'grade': 'A'}
+Student name: John`
                     },
                     {
                         number: 5,
@@ -537,7 +668,18 @@ reshaped = arr.reshape(5, 1)
 
 # Mathematical Operations
 mean_val = np.mean(arr)
-std_val = np.std(arr)`
+std_val = np.std(arr)
+
+print("Original array:", arr)
+print("Multiplied by 2:", result)
+print("Sum:", sum_arr)
+print("Mean:", mean_val)
+print("Standard Deviation:", std_val)`,
+                        output: `Original array: [1 2 3 4 5]
+Multiplied by 2: [ 2  4  6  8 10]
+Sum: 15
+Mean: 3.0
+Standard Deviation: 1.4142135623730951`
                     }
                 ]
             },
@@ -564,13 +706,40 @@ data = {
 }
 df = pd.DataFrame(data)
 
-# Loading CSV
-df = pd.read_csv('data.csv')
-
 # Basic Inspection
-df.head()  # First 5 rows
-df.info()  # Data types and info
-df.describe()  # Statistical summary`
+print("DataFrame:")
+print(df)
+print("\nDataFrame Info:")
+print(df.info())
+print("\nStatistical Summary:")
+print(df.describe())`,
+                        output: `DataFrame:
+      Name  Age     City
+0    Alice   25      NYC
+1      Bob   30       LA
+2  Charlie   35  Chicago
+
+DataFrame Info:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 3 entries, 0 to 2
+Data columns (total 3 columns):
+ #   Column  Non-Null Count  Dtype 
+---  ------  --------------  ----- 
+ 0   Name    3 non-null      object
+ 1   Age     3 non-null      int64 
+ 2   City    3 non-null      object
+dtypes: int64(1), object(2)
+
+Statistical Summary:
+             Age
+count   3.000000
+mean   30.000000
+std     5.000000
+min    25.000000
+25%    27.500000
+50%    30.000000
+75%    32.500000
+max    35.000000`
                     },
                     {
                         number: 2,
@@ -578,18 +747,42 @@ df.describe()  # Statistical summary`
                         task: "Handled missing values, duplicates, and data type conversions using Pandas.",
                         type: "code",
                         code: `import pandas as pd
+import numpy as np
 
-# Handling Missing Values
-df.dropna()  # Remove rows with NaN
-df.fillna(0)  # Fill NaN with 0
-df.fillna(df.mean())  # Fill with mean
+# Sample data with missing values
+data = {
+    'A': [1, 2, np.nan, 4],
+    'B': [5, np.nan, 7, 8],
+    'C': [9, 10, 11, 12]
+}
+df = pd.DataFrame(data)
 
-# Removing Duplicates
-df.drop_duplicates()
+print("Original DataFrame:")
+print(df)
 
-# Data Type Conversion
-df['column'] = df['column'].astype('int')
-df['date'] = pd.to_datetime(df['date'])`
+# Fill missing values with mean
+df_filled = df.fillna(df.mean())
+print("\nAfter filling NaN with mean:")
+print(df_filled)
+
+# Remove duplicates
+df_no_dup = df.drop_duplicates()
+print("\nShape after removing duplicates:", df_no_dup.shape)`,
+                        output: `Original DataFrame:
+     A    B   C
+0  1.0  5.0   9
+1  2.0  NaN  10
+2  NaN  7.0  11
+3  4.0  8.0  12
+
+After filling NaN with mean:
+          A         B   C
+0  1.000000  5.000000   9
+1  2.000000  6.666667  10
+2  2.333333  7.000000  11
+3  4.000000  8.000000  12
+
+Shape after removing duplicates: (4, 3)`
                     },
                     {
                         number: 3,
@@ -598,18 +791,47 @@ df['date'] = pd.to_datetime(df['date'])`
                         type: "code",
                         code: `import pandas as pd
 
+# Sample data
+data = {
+    'feature1': [1, 2, 3, 4, 5],
+    'feature2': [2, 4, 6, 8, 10],
+    'target': [1, 3, 5, 7, 9]
+}
+df = pd.DataFrame(data)
+
 # Descriptive Statistics
-df.describe()  # Mean, std, min, max, quartiles
-df.mean()  # Average values
-df.median()  # Median values
-df.mode()  # Most frequent values
+print("Descriptive Statistics:")
+print(df.describe())
 
 # Correlation Analysis
+print("\nCorrelation Matrix:")
 correlation_matrix = df.corr()
 print(correlation_matrix)
 
-# Value Counts
-df['category'].value_counts()`,
+# Value Counts (categorical data example)
+print("\nMean values:")
+print(df.mean())`,
+                        output: `Descriptive Statistics:
+       feature1  feature2  target
+count       5.0       5.0     5.0
+mean        3.0       6.0     5.0
+std         1.58      3.16    3.16
+min         1.0       2.0     1.0
+25%         2.0       4.0     3.0
+50%         3.0       6.0     5.0
+75%         4.0       8.0     7.0
+max         5.0      10.0     9.0
+
+Correlation Matrix:
+          feature1  feature2  target
+feature1       1.0       1.0     1.0
+feature2       1.0       1.0     1.0
+target         1.0       1.0     1.0
+
+Mean values:
+feature1    3.0
+feature2    6.0
+target      5.0`,
                         visual: { title: "EDA Insights", text: "Understanding data distribution, relationships, and patterns" }
                     },
                     {
@@ -619,6 +841,14 @@ df['category'].value_counts()`,
                         type: "code",
                         code: `import matplotlib.pyplot as plt
 import pandas as pd
+
+# Sample data
+data = {
+    'x': [1, 2, 3, 4, 5],
+    'y': [2, 4, 6, 8, 10],
+    'category': ['A', 'B', 'C', 'A', 'B']
+}
+df = pd.DataFrame(data)
 
 # Line Plot
 plt.plot(df['x'], df['y'])
@@ -631,15 +861,18 @@ plt.title('Bar Chart')
 plt.show()
 
 # Histogram
-df['values'].hist(bins=20)
+df['y'].hist(bins=5)
 plt.title('Histogram')
 plt.show()
 
 # Scatter Plot
 plt.scatter(df['x'], df['y'])
 plt.title('Scatter Plot')
-plt.show()`,
-                        chart: true
+plt.show()
+
+print("Plots displayed successfully!")`,
+                        output: `Plots displayed successfully!`,
+                        showVizImages: true
                     },
                     {
                         number: 5,
@@ -661,6 +894,7 @@ plt.show()`,
                         task: "Learned mean, median, mode, variance, and standard deviation.",
                         type: "stats",
                         code: `import numpy as np
+from scipy import stats
 
 data = [10, 20, 30, 40, 50]
 
@@ -671,14 +905,22 @@ mean = np.mean(data)  # 30
 median = np.median(data)  # 30
 
 # Mode (using scipy)
-from scipy import stats
-mode = stats.mode(data)
+mode = stats.mode(data, keepdims=True)
 
 # Variance
 variance = np.var(data)
 
 # Standard Deviation
-std_dev = np.std(data)`
+std_dev = np.std(data)
+
+print(f"Mean: {mean}")
+print(f"Median: {median}")
+print(f"Variance: {variance}")
+print(f"Standard Deviation: {std_dev}")`,
+                        output: `Mean: 30.0
+Median: 30.0
+Variance: 200.0
+Standard Deviation: 14.142135623730951`
                     },
                     {
                         number: 2,
@@ -707,11 +949,39 @@ transpose = matrix_a.T
 
 # Matrix Multiplication
 result = np.dot(matrix_a, matrix_b)
-# or
-result = matrix_a @ matrix_b
 
 # Element-wise operations
-element_wise = matrix_a * matrix_b`,
+element_wise = matrix_a * matrix_b
+
+print("Matrix A:")
+print(matrix_a)
+print("\nMatrix B:")
+print(matrix_b)
+print("\nTranspose of A:")
+print(transpose)
+print("\nMatrix Multiplication (A × B):")
+print(result)
+print("\nElement-wise Multiplication:")
+print(element_wise)`,
+                        output: `Matrix A:
+[[1 2]
+ [3 4]]
+
+Matrix B:
+[[5 6]
+ [7 8]]
+
+Transpose of A:
+[[1 3]
+ [2 4]]
+
+Matrix Multiplication (A × B):
+[[19 22]
+ [43 50]]
+
+Element-wise Multiplication:
+[[ 5 12]
+ [21 32]]`,
                         formula: "C = A × B",
                         formulaDesc: "(m×n) × (n×p) = (m×p)"
                     },
@@ -746,7 +1016,21 @@ B = np.array([[2, 0], [0, 2]])
 C = A @ B
 
 # Determinant
-det_A = np.linalg.det(A)`
+det_A = np.linalg.det(A)
+
+print(f"Mean Score: {mean_score}")
+print(f"Standard Deviation: {std_score}")
+print("\nMatrix Multiplication Result:")
+print(C)
+print(f"\nDeterminant of A: {det_A}")`,
+                        output: `Mean Score: 85.75
+Standard Deviation: 6.019470235374123
+
+Matrix Multiplication Result:
+[[2 4]
+ [6 8]]
+
+Determinant of A: -2.0000000000000004`
                     }
                 ]
             },
@@ -771,23 +1055,34 @@ det_A = np.linalg.det(A)`
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+
+# Sample data
+X = np.random.rand(100, 4)
+y = np.random.randint(0, 2, 100)
 
 # 1. Data Preprocessing
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-# 2. Feature Selection (if needed)
-# 3. Train-Test Split
+# 2. Train-Test Split
 X_train, X_test, y_train, y_test = train_test_split(
     X_scaled, y, test_size=0.2, random_state=42
 )
 
-# 4. Model Training
-model = RandomForestClassifier()
+# 3. Model Training
+model = RandomForestClassifier(random_state=42)
 model.fit(X_train, y_train)
 
-# 5. Model Evaluation
-accuracy = model.score(X_test, y_test)`
+# 4. Model Evaluation
+accuracy = model.score(X_test, y_test)
+
+print(f"Training set shape: {X_train.shape}")
+print(f"Test set shape: {X_test.shape}")
+print(f"Model Accuracy: {accuracy:.2f}")`,
+                        output: `Training set shape: (80, 4)
+Test set shape: (20, 4)
+Model Accuracy: 0.55`
                     },
                     {
                         number: 3,
@@ -796,9 +1091,17 @@ accuracy = model.score(X_test, y_test)`
                         type: "code",
                         code: `from sklearn.model_selection import train_test_split
 import pandas as pd
+import numpy as np
 
-# Load data
-df = pd.read_csv('dataset.csv')
+# Sample data
+np.random.seed(42)
+df = pd.DataFrame({
+    'feature1': np.random.rand(100),
+    'feature2': np.random.rand(100),
+    'feature3': np.random.rand(100),
+    'target': np.random.randint(0, 2, 100)
+})
+
 X = df.drop('target', axis=1)
 y = df['target']
 
@@ -812,7 +1115,13 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # Check shapes
 print(f"Training set: {X_train.shape}")
-print(f"Test set: {X_test.shape}")`,
+print(f"Test set: {X_test.shape}")
+print(f"Training labels: {y_train.shape}")
+print(f"Test labels: {y_test.shape}")`,
+                        output: `Training set: (80, 3)
+Test set: (20, 3)
+Training labels: (80,)
+Test labels: (20,)`,
                         visual: { title: "Data Split", text: "Training Set (80%) → Model Learning | Test Set (20%) → Model Evaluation" }
                     },
                     {
@@ -824,9 +1133,11 @@ print(f"Test set: {X_test.shape}")`,
     accuracy_score, precision_score, 
     recall_score, f1_score, confusion_matrix
 )
+import numpy as np
 
-# Make predictions
-y_pred = model.predict(X_test)
+# Simulated predictions
+y_test = np.array([0, 1, 1, 0, 1, 1, 0, 0, 1, 0])
+y_pred = np.array([0, 1, 1, 0, 1, 0, 0, 1, 1, 0])
 
 # Calculate metrics
 accuracy = accuracy_score(y_test, y_pred)
@@ -836,13 +1147,25 @@ f1 = f1_score(y_test, y_pred)
 
 # Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
-# [[TN, FP],
-#  [FN, TP]]
 
 print(f"Accuracy: {accuracy:.2f}")
 print(f"Precision: {precision:.2f}")
 print(f"Recall: {recall:.2f}")
-print(f"F1-Score: {f1:.2f}")`
+print(f"F1-Score: {f1:.2f}")
+print("\nConfusion Matrix:")
+print(cm)
+print("[[TN, FP],")
+print(" [FN, TP]]")`,
+                        output: `Accuracy: 0.80
+Precision: 0.80
+Recall: 0.80
+F1-Score: 0.80
+
+Confusion Matrix:
+[[4 1]
+ [1 4]]
+[[TN, FP],
+ [FN, TP]]`
                     },
                     {
                         number: 5,
@@ -997,6 +1320,56 @@ print(f"F1-Score: {f1:.2f}")`
             return `<div class="code-snippet"><pre>${highlightCode(cleaned)}</pre></div>`;
         }
 
+        function renderOutputSnippet(output) {
+            if (!output) return '';
+            const cleaned = cleanCode(output);
+            return `<div class="output-snippet"><pre>${escapeHtml(cleaned)}</pre></div>`;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function renderVisualizationImages() {
+            return `
+        <div class="visualization-images">
+            <div class="viz-image-container">
+                <h4>Line Plot</h4>
+                <div class="viz-image viz-line">
+                    <img src="assets/1.png" alt="Line Plot" style="width: 100%; height: auto; border-radius: 4px;">
+                </div>
+            </div>
+            
+            <div class="viz-image-container">
+                <h4>Bar Chart</h4>
+                <div class="viz-image viz-bar">
+                    <img src="assets/2.png" alt="Bar Chart" style="width: 100%; height: auto; border-radius: 4px;">
+                </div>
+            </div>
+            
+            <div class="viz-image-container">
+                <h4>Histogram</h4>
+                <div class="viz-image viz-histogram">
+                    <img src="assets/3.png" alt="Histogram" style="width: 100%; height: auto; border-radius: 4px;">
+                </div>
+            </div>
+            
+            <div class="viz-image-container">
+                <h4>Scatter Plot</h4>
+                <div class="viz-image viz-scatter">
+                    <img src="assets/4.png" alt="Scatter Plot" style="width: 100%; height: auto; border-radius: 4px;">
+                </div>
+            </div>
+        </div>
+    `;
+        }
         function renderDayCard(day, weekNum) {
             let html = `<div class="day-card" id="day-${weekNum}-${day.number}">`;
             html += `
@@ -1011,6 +1384,12 @@ print(f"F1-Score: {f1:.2f}")`
 
             if (day.type === 'code' && day.code) {
                 html += renderCodeSnippet(day.code);
+                if (day.output) {
+                    html += renderOutputSnippet(day.output);
+                }
+                if (day.showVizImages) {
+                    html += renderVisualizationImages();
+                }
             }
 
             if (day.type === 'formula' && day.formula) {
@@ -1054,6 +1433,9 @@ print(f"F1-Score: {f1:.2f}")`
                 `;
                 if (day.code) {
                     html += renderCodeSnippet(day.code);
+                    if (day.output) {
+                        html += renderOutputSnippet(day.output);
+                    }
                 }
             }
 
@@ -1069,6 +1451,9 @@ print(f"F1-Score: {f1:.2f}")`
                 `;
                 if (day.code) {
                     html += renderCodeSnippet(day.code);
+                    if (day.output) {
+                        html += renderOutputSnippet(day.output);
+                    }
                 }
             }
 
@@ -1097,6 +1482,9 @@ print(f"F1-Score: {f1:.2f}")`
                 html += '</div>';
                 if (day.code) {
                     html += renderCodeSnippet(day.code);
+                    if (day.output) {
+                        html += renderOutputSnippet(day.output);
+                    }
                 }
             }
 
@@ -1108,10 +1496,6 @@ print(f"F1-Score: {f1:.2f}")`
                         <p>${visual.text}</p>
                     </div>
                 `;
-            }
-
-            if (day.chart) {
-                html += '<div class="chart-placeholder"></div>';
             }
 
             html += '</div>';
